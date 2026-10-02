@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AZ PROJECT - Premium Photography & Videography Studio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#0f0f10',
+                        charcoal: '#18181b',
+                        gold: '#d4af37',
+                        'gold-light': '#f3e5ab',
+                        'gold-dark': '#997a15',
+                        subtle: '#27272a'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f0f10;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF 0%, #D4AF37 50%, #F3E5AB 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-border-gradient {
+            border-image: linear-gradient(to right, #d4af37, #18181b) 1;
+        }
+
+        /* Glassmorphism */
+        .glass-card {
+            background: rgba(24, 24, 27, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .hero-bg {
+            background: linear-gradient(to bottom, rgba(15, 15, 16, 0.4), rgba(15, 15, 16, 0.95)),
+                        url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="bg-obsidian text-gray-200 font-sans antialiased overflow-x-hidden">
+
+    <!-- Navigation Bar -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-4 px-6 md:px-12 bg-obsidian/80 backdrop-blur-md border-b border-subtle/50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full border border-gold flex items-center justify-center text-gold font-serif font-bold text-xl group-hover:bg-gold group-hover:text-obsidian transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+                    AZ
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif text-xl tracking-wider text-white font-bold group-hover:text-gold transition-colors">AZ PROJECT</span>
+                    <span class="text-[9px] tracking-[0.25em] text-gold uppercase -mt-1">Studio Visual</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#about" class="text-gray-300 hover:text-gold transition-colors">Tentang Kami</a>
+                <a href="#services" class="text-gray-300 hover:text-gold transition-colors">Layanan</a>
+                <a href="#portfolio" class="text-gray-300 hover:text-gold transition-colors">Portofolio</a>
+                <a href="#calculator" class="text-gray-300 hover:text-gold transition-colors">Kalkulator Paket</a>
+                <a href="#testimonials" class="text-gray-300 hover:text-gold transition-colors">Ulasan</a>
+                <a href="#contact" class="px-5 py-2.5 rounded-full border border-gold text-gold hover:bg-gold hover:text-obsidian font-semibold transition-all duration-300 shadow-[0_0_10px_rgba(212,175,55,0.2)]">
+                    Reservasi Sekarang
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-gray-300 hover:text-gold focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-drawer" class="hidden md:hidden fixed inset-x-0 top-[73px] bg-charcoal border-b border-subtle p-6 flex-col space-y-4 text-center shadow-2xl transition-all">
+            <a href="#about" class="mobile-link text-gray-300 hover:text-gold py-2 block border-b border-subtle/30">Tentang Kami</a>
+            <a href="#services" class="mobile-link text-gray-300 hover:text-gold py-2 block border-b border-subtle/30">Layanan</a>
+            <a href="#portfolio" class="mobile-link text-gray-300 hover:text-gold py-2 block border-b border-subtle/30">Portofolio</a>
+            <a href="#calculator" class="mobile-link text-gray-300 hover:text-gold py-2 block border-b border-subtle/30">Kalkulator Paket</a>
+            <a href="#testimonials" class="mobile-link text-gray-300 hover:text-gold py-2 block border-b border-subtle/30">Ulasan</a>
+            <a href="#contact" class="mobile-link px-5 py-3 rounded-full bg-gold text-obsidian font-bold block mt-4">Reservasi Sekarang</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen hero-bg flex items-center justify-center pt-24 pb-16 px-6">
+        <div class="max-w-4xl mx-auto text-center z-10 space-y-6">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs uppercase tracking-widest font-semibold mb-2 animate-pulse">
+                <i class="fa-solid fa-camera"></i> Capture Every Moment with Precision
+            </div>
+            
+            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold text-white leading-tight">
+                Mengabadikan <span class="gold-gradient-text">Emosi & Kisah</span> Dalam Keabadian
+            </h1>
+
+            <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
+                AZ PROJECT adalah studio fotografi & videography profesional yang berfokus pada estetika tinggi, pencahayaan dramatis, dan penceritaan visual yang otentik.
+            </p>
+
+            <!-- Dynamic Tagline Slider -->
+            <div class="h-8 text-gold font-serif italic text-lg sm:text-xl">
+                <span id="hero-typing-text">Wedding • Prewedding • Commercial • Cinematic Video</span>
+            </div>
+
+            <!-- Call to Actions -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
+                <a href="#portfolio" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gold text-obsidian font-bold hover:bg-gold-light transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.4)] flex items-center justify-center gap-2 group">
+                    <span>Lihat Portofolio</span>
+                    <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-charcoal/80 border border-gold/40 text-white font-medium hover:border-gold hover:bg-charcoal transition-all duration-300 flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-green-400"></i> Konsultasi Gratis
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <a href="#about" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-gold/60 hover:text-gold transition-colors flex flex-col items-center gap-2 text-xs uppercase tracking-widest">
+            <span>Gulir Ke Bawah</span>
+            <i class="fa-solid fa-chevron-down animate-bounce"></i>
+        </a>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-24 px-6 bg-charcoal/50 relative border-y border-subtle">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <!-- Left Side: Image Layout -->
+            <div class="relative">
+                <div class="relative z-10 rounded-2xl overflow-hidden border border-gold/30 shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=1000&auto=format&fit=crop" alt="Photographer at work" class="w-full h-[420px] object-cover hover:scale-105 transition-transform duration-700">
+                </div>
+                <!-- Accent Floating Box -->
+                <div class="absolute -bottom-6 -right-6 z-20 bg-obsidian/90 border border-gold p-6 rounded-2xl hidden sm:block shadow-xl">
+                    <div class="text-3xl font-serif font-bold text-gold mb-1">8+ Tahun</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider">Pengalaman Industri</div>
+                </div>
+            </div>
+
+            <!-- Right Side: Content -->
+            <div class="space-y-6">
+                <div class="inline-block text-gold text-xs uppercase tracking-widest font-semibold">TENTANG AZ PROJECT</div>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">
+                    Lebih dari Sekadar Gambar, Kami Mengabadikan Jiwa dan Momen
+                </h2>
+                <p class="text-gray-300 leading-relaxed text-sm sm:text-base">
+                    AZ PROJECT berdiri atas kesenangan dalam seni visual. Setiap momen berharga, dari senyuman pernikahan hingga visi produk komersial, berhak mendapatkan narasi visual terbaik.
+                </p>
+
+                <!-- Core Values Grid -->
+                <div class="grid grid-cols-3 gap-4 py-2 border-y border-subtle/60">
+                    <div class="text-center p-3">
+                        <i class="fa-solid fa-wand-magic-sparkles text-gold text-2xl mb-2"></i>
+                        <h4 class="text-white font-semibold text-sm">Kreativitas</h4>
+                        <p class="text-xs text-gray-400 mt-1">Sudut pandang bernilai seni tinggi</p>
+                    </div>
+                    <div class="text-center p-3">
+                        <i class="fa-solid fa-bullseye text-gold text-2xl mb-2"></i>
+                        <h4 class="text-white font-semibold text-sm">Presisi</h4>
+                        <p class="text-xs text-gray-400 mt-1">Detail teknis & warna sempurna</p>
+                    </div>
+                    <div class="text-center p-3">
+                        <i class="fa-solid fa-heart text-gold text-2xl mb-2"></i>
+                        <h4 class="text-white font-semibold text-sm">Emosi</h4>
+                        <p class="text-xs text-gray-400 mt-1">Mengabadikan perasaan nyata</p>
+                    </div>
+                </div>
+
+                <!-- Stats Counters -->
+                <div class="grid grid-cols-3 gap-4 pt-2">
+                    <div>
+                        <div class="text-2xl sm:text-3xl font-bold text-white font-serif">500+</div>
+                        <div class="text-xs text-gray-400">Proyek Selesai</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl sm:text-3xl font-bold text-white font-serif">350+</div>
+                        <div class="text-xs text-gray-400">Klien Puas</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl sm:text-3xl font-bold text-white font-serif">15+</div>
+                        <div class="text-xs text-gray-400">Penghargaan Visual</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Provided Section -->
+    <section id="services" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+            <span class="text-gold text-xs uppercase tracking-widest font-semibold">LAYANAN KAMI</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">Solusi Visual Komprehensif</h2>
+            <p class="text-gray-400 text-sm">Kami menyediakan layanan dokumentasi & konseptual terbaik yang disesuaikan khusus untuk kebutuhan pribadi maupun bisnis Anda.</p>
+        </div>
+
+        <!-- Services Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Service Card 1 -->
+            <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-all duration-300 group">
+                <div class="w-14 h-14 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center text-gold text-2xl mb-6 group-hover:bg-gold group-hover:text-obsidian transition-colors">
+                    <i class="fa-solid fa-rings-wedding"></i>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-white mb-3">Wedding & Engagement</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                    Dokumentasi momen paling berharga dalam hidup Anda secara elegan dan emosional, menangkap setiap momen berkesan secara natural.
+                </p>
+                <ul class="text-xs text-gray-300 space-y-2">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> Full Day Coverage</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> Cinematic Highlight Film</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> Exclusive Photobook Album</li>
+                </ul>
+            </div>
+
+            <!-- Service Card 2 -->
+            <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-all duration-300 group">
+                <div class="w-14 h-14 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center text-gold text-2xl mb-6 group-hover:bg-gold group-hover:text-obsidian transition-colors">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-white mb-3">Pre-wedding Concept</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                    Sesi foto pra-nikah dengan konsep tematik, pemilihan lokasi outdoor/indoor terbaik, serta pengarahan gaya profesional.
+                </p>
+                <ul class="text-xs text-gray-300 space-y-2">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> Moodboard & Concept Development</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> Make Up Artist & Styling Directing</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> Cetak Canvas & Frame Eksklusif</li>
+                </ul>
+            </div>
+
+            <!-- Service Card 3 -->
+            <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-all duration-300 group">
+                <div class="w-14 h-14 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center text-gold text-2xl mb-6 group-hover:bg-gold group-hover:text-obsidian transition-colors">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-white mb-3">Commercial & Product</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                    Tingkatkan branding produk dan bisnis Anda melalui foto komersial berstandar tinggi untuk kebutuhan katalog, marketplace & iklan.
+                </p>
+                <ul class="text-xs text-gray-300 space-y-2">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> Studio Light Setup Profesional</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> High-End Retouching</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> Commercial Rights Included</li>
+                </ul>
+            </div>
+
+            <!-- Service Card 4 -->
+            <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-all duration-300 group">
+                <div class="w-14 h-14 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center text-gold text-2xl mb-6 group-hover:bg-gold group-hover:text-obsidian transition-colors">
+                    <i class="fa-solid fa-building"></i>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-white mb-3">Corporate & Event</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                    Dokumentasi acara perusahaan, konferensi, peluncuran produk, festival, hingga pesta privat dengan liputan lengkap.
+                </p>
+                <ul class="text-xs text-gray-300 space-y-2">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> Tim Multi-kamera</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> Fast-turnaround Same Day Edit</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> Galeri Dokumentasi Digital Online</li>
+                </ul>
+            </div>
+
+            <!-- Service Card 5 -->
+            <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-all duration-300 group">
+                <div class="w-14 h-14 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center text-gold text-2xl mb-6 group-hover:bg-gold group-hover:text-obsidian transition-colors">
+                    <i class="fa-solid fa-plane-tilt"></i>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-white mb-3">Cinematic Drone & Video</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                    Visualisasi tingkat lanjut dari udara (Drone 4K) dan video sinematik dengan gradasi warna profesional (Color Grading).
+                </p>
+                <ul class="text-xs text-gray-300 space-y-2">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> Certified Licensed Drone Pilot</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> 4K Ultra HD Resolution Video</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> Sound Design & Music License</li>
+                </ul>
+            </div>
+
+            <!-- Service Card 6 -->
+            <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-all duration-300 group">
+                <div class="w-14 h-14 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center text-gold text-2xl mb-6 group-hover:bg-gold group-hover:text-obsidian transition-colors">
+                    <i class="fa-solid fa-user-astronaut"></i>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-white mb-3">Portrait & Personal Studio</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                    Sesi foto portrait personal, wisuda, maternity, hingga portofolio model dengan estetika pencahayaan studio memukau.
+                </p>
+                <ul class="text-xs text-gray-300 space-y-2">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> Privat Studio Setup</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> Unlimited Color Backgrounds</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> Digital High Resolution Files</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Portfolio Section -->
+    <section id="portfolio" class="py-24 px-6 bg-charcoal/40 border-t border-subtle">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <span class="text-gold text-xs uppercase tracking-widest font-semibold">PORTOFOLIO KARYA</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-2">Galeri Momen Terpilih</h2>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap gap-2 text-sm" id="portfolio-filters">
+                    <button data-filter="all" class="filter-btn active px-4 py-2 rounded-full border border-gold bg-gold text-obsidian font-semibold transition-all">Semua</button>
+                    <button data-filter="wedding" class="filter-btn px-4 py-2 rounded-full border border-subtle bg-obsidian text-gray-300 hover:border-gold hover:text-gold transition-all">Wedding</button>
+                    <button data-filter="prewedding" class="filter-btn px-4 py-2 rounded-full border border-subtle bg-obsidian text-gray-300 hover:border-gold hover:text-gold transition-all">Prewedding</button>
+                    <button data-filter="commercial" class="filter-btn px-4 py-2 rounded-full border border-subtle bg-obsidian text-gray-300 hover:border-gold hover:text-gold transition-all">Commercial</button>
+                    <button data-filter="event" class="filter-btn px-4 py-2 rounded-full border border-subtle bg-obsidian text-gray-300 hover:border-gold hover:text-gold transition-all">Event</button>
+                    <button data-filter="portrait" class="filter-btn px-4 py-2 rounded-full border border-subtle bg-obsidian text-gray-300 hover:border-gold hover:text-gold transition-all">Portrait</button>
+                </div>
+            </div>
+
+            <!-- Portfolio Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolio-grid">
+                <!-- Items populated via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Lightbox Modal -->
+    <div id="portfolio-modal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="relative max-w-4xl w-full bg-charcoal border border-gold/40 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row">
+            <button id="modal-close" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-obsidian/80 text-white hover:text-gold flex items-center justify-center border border-subtle">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="md:w-3/5 relative bg-black flex items-center justify-center">
+                <img id="modal-img" src="" alt="Detail Portfolio" class="max-h-[70vh] object-contain w-full">
+            </div>
+            <div class="md:w-2/5 p-6 flex flex-col justify-between space-y-4">
+                <div>
+                    <span id="modal-category" class="inline-block px-3 py-1 rounded-full bg-gold/10 text-gold text-xs font-semibold mb-3 uppercase">Category</span>
+                    <h3 id="modal-title" class="font-serif text-2xl font-bold text-white mb-2">Project Title</h3>
+                    <p id="modal-desc" class="text-xs text-gray-300 leading-relaxed">Description goes here...</p>
+                </div>
+                <div class="space-y-2 border-t border-subtle pt-4 text-xs">
+                    <div class="flex justify-between"><span class="text-gray-400">Klien:</span> <span id="modal-client" class="text-white font-medium">Name</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">Tanggal:</span> <span id="modal-date" class="text-white font-medium">Date</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">Lokasi:</span> <span id="modal-location" class="text-white font-medium">Location</span></div>
+                </div>
+                <a id="modal-booking-btn" href="#calculator" class="w-full py-3 rounded-xl bg-gold text-obsidian font-bold text-center block hover:bg-gold-light transition-colors text-sm">
+                    Pesan Paket Serupa
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing & Package Calculator -->
+    <section id="calculator" class="py-24 px-6 max-w-6xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+            <span class="text-gold text-xs uppercase tracking-widest font-semibold">ESTIMASI BIAYA</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">Kalkulator Estimasi Paket</h2>
+            <p class="text-gray-400 text-sm">Sesuaikan kebutuhan dokumentasi Anda dan dapatkan perkiraan biaya secara transparan secara langsung.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 items-start">
+            <!-- Controls Box (Left 2 columns) -->
+            <div class="md:col-span-2 glass-card p-6 sm:p-8 rounded-2xl space-y-6">
+                <!-- Step 1: Select Main Package -->
+                <div>
+                    <label class="block text-white font-medium mb-3 text-sm flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-gold text-obsidian font-bold text-xs flex items-center justify-center">1</span>
+                        Pilih Kategori Layanan Utama
+                    </label>
+                    <select id="calc-package" class="w-full bg-obsidian border border-subtle rounded-xl p-3 text-white text-sm focus:border-gold focus:outline-none">
+                        <option value="wedding" data-price="7500000">Wedding Full Day Session (Rp 7.500.000)</option>
+                        <option value="prewedding" data-price="4500000">Prewedding Concept Shoot (Rp 4.500.000)</option>
+                        <option value="commercial" data-price="3500000">Commercial & Branding Shoot (Rp 3.500.000)</option>
+                        <option value="event" data-price="2500000">Event Coverage (Half Day) (Rp 2.500.000)</option>
+                        <option value="portrait" data-price="1500000">Personal Portrait Studio (Rp 1.500.000)</option>
+                    </select>
+                </div>
+
+                <!-- Step 2: Extra Hours Range Slider -->
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="text-white font-medium text-sm flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-gold text-obsidian font-bold text-xs flex items-center justify-center">2</span>
+                            Tambahan Jam Kerja (+Rp 500rb / jam)
+                        </label>
+                        <span id="extra-hours-val" class="text-gold font-bold text-sm">0 Jam</span>
+                    </div>
+                    <input type="range" id="calc-hours" min="0" max="6" value="0" class="w-full accent-gold bg-subtle rounded-lg cursor-pointer h-2">
+                </div>
+
+                <!-- Step 3: Add-on Checkboxes -->
+                <div class="space-y-3">
+                    <label class="text-white font-medium text-sm flex items-center gap-2 mb-1">
+                        <span class="w-6 h-6 rounded-full bg-gold text-obsidian font-bold text-xs flex items-center justify-center">3</span>
+                        Layanan Tambahan (Add-ons)
+                    </label>
+
+                    <label class="flex items-center justify-between p-3 rounded-xl bg-obsidian/60 border border-subtle hover:border-gold/30 cursor-pointer">
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" class="calc-addon accent-gold w-4 h-4" data-price="1500000" value="Drone Aerial Footage">
+                            <span class="text-sm text-gray-200">Video Udara Drone 4K</span>
+                        </div>
+                        <span class="text-xs text-gold font-medium">+Rp 1.500.000</span>
+                    </label>
+
+                    <label class="flex items-center justify-between p-3 rounded-xl bg-obsidian/60 border border-subtle hover:border-gold/30 cursor-pointer">
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" class="calc-addon accent-gold w-4 h-4" data-price="1200000" value="Cetak Album Photobook Premium">
+                            <span class="text-sm text-gray-200">Cetak Photobook Album Eksklusif (20 Halaman)</span>
+                        </div>
+                        <span class="text-xs text-gold font-medium">+Rp 1.200.000</span>
+                    </label>
+
+                    <label class="flex items-center justify-between p-3 rounded-xl bg-obsidian/60 border border-subtle hover:border-gold/30 cursor-pointer">
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" class="calc-addon accent-gold w-4 h-4" data-price="800000" value="Cetak Canvas Large 60x90cm">
+                            <span class="text-sm text-gray-200">Cetak Canvas Large (60x90cm) + Frame Minimalis</span>
+                        </div>
+                        <span class="text-xs text-gold font-medium">+Rp 800.000</span>
+                    </label>
+
+                    <label class="flex items-center justify-between p-3 rounded-xl bg-obsidian/60 border border-subtle hover:border-gold/30 cursor-pointer">
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" class="calc-addon accent-gold w-4 h-4" data-price="1000000" value="Same Day Edit Video">
+                            <span class="text-sm text-gray-200">Video Same Day Edit (SDE) Teaser 1 Menit</span>
+                        </div>
+                        <span class="text-xs text-gold font-medium">+Rp 1.000.000</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Price Breakdown Summary Box (Right 1 column) -->
+            <div class="glass-card p-6 rounded-2xl border border-gold/40 flex flex-col justify-between space-y-6">
+                <div>
+                    <h3 class="font-serif text-xl font-bold text-white mb-4 border-b border-subtle pb-3">Ringkasan Estimasi</h3>
+                    <div class="space-y-3 text-xs text-gray-300">
+                        <div class="flex justify-between">
+                            <span>Paket Utama:</span>
+                            <span id="summary-main" class="font-medium text-white text-right">Rp 7.500.000</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Tambahan Jam:</span>
+                            <span id="summary-hours" class="font-medium text-white">Rp 0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Add-ons Total:</span>
+                            <span id="summary-addons" class="font-medium text-white">Rp 0</span>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-subtle my-4 pt-4">
+                        <div class="text-xs text-gray-400 mb-1">Total Estimasi Biaya:</div>
+                        <div id="total-price" class="font-serif text-3xl font-bold text-gold">Rp 7.500.000</div>
+                        <p class="text-[10px] text-gray-400 mt-2">*Harga akhir dapat menyesuaikan dengan detail khusus lokasi & pengerjaan.</p>
+                    </div>
+                </div>
+
+                <button id="book-calc-btn" class="w-full py-3.5 rounded-xl bg-gold text-obsidian font-bold hover:bg-gold-light transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.3)] flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Booking Estimasi Ini
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Testimonials Slider Section -->
+    <section id="testimonials" class="py-24 px-6 bg-charcoal/30 border-y border-subtle">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="text-gold text-xs uppercase tracking-widest font-semibold">TESTIMONI KLIEN</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-2 mb-12">Kata Mereka Tentang AZ PROJECT</h2>
+
+            <!-- Testimonial Carousel -->
+            <div class="relative min-h-[220px]">
+                <div id="testimonial-container" class="glass-card p-8 sm:p-10 rounded-2xl relative">
+                    <i class="fa-solid fa-quote-left text-gold/20 text-5xl absolute top-4 left-6"></i>
+                    <p id="testi-text" class="text-gray-200 italic text-base sm:text-lg leading-relaxed relative z-10 mb-6">
+                        "Hasil foto pernikahan kami sangat sinematik dan menyentuh hati! Tim AZ PROJECT sangat profesional, membuat kami merasa sangat nyaman saat sesi shoot."
+                    </p>
+                    <div class="flex items-center justify-center gap-1 text-gold text-sm mb-2" id="testi-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <h4 id="testi-author" class="font-serif text-lg font-bold text-white">Rian & Amanda</h4>
+                    <span id="testi-role" class="text-xs text-gold">Pernikahan di Jakarta</span>
+                </div>
+
+                <!-- Navigation Arrow Buttons -->
+                <button id="testi-prev" class="absolute top-1/2 -left-4 sm:-left-6 -translate-y-1/2 w-10 h-10 rounded-full bg-obsidian border border-gold/40 text-gold hover:bg-gold hover:text-obsidian flex items-center justify-center transition-all">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button id="testi-next" class="absolute top-1/2 -right-4 sm:-right-6 -translate-y-1/2 w-10 h-10 rounded-full bg-obsidian border border-gold/40 text-gold hover:bg-gold hover:text-obsidian flex items-center justify-center transition-all">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Booking Section -->
+    <section id="contact" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12">
+            <!-- Contact Info & Map -->
+            <div class="space-y-8">
+                <div>
+                    <span class="text-gold text-xs uppercase tracking-widest font-semibold">HUBUNGI KAMI</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-2">Mari Bicara Tentang Visi Anda</h2>
+                    <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+                        Siap mengabadikan momen berharga Anda? Jadwalkan konsultasi gratis dengan tim fotografer utama kami.
+                    </p>
+                </div>
+
+                <div class="space-y-4 text-sm">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center text-gold shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <div class="text-white font-semibold">Studio & Galeri Utama</div>
+                            <div class="text-gray-400 text-xs">Jl. Senopati Raya No. 88, Kebayoran Baru, Jakarta Selatan</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center text-gold shrink-0">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <div class="text-white font-semibold">Email Hotline</div>
+                            <div class="text-gray-400 text-xs">hello@azproject.id / info@azproject.id</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center text-gold shrink-0">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <div class="text-white font-semibold">WhatsApp Business</div>
+                            <div class="text-gray-400 text-xs">+62 812-3456-7890 (24/7 Fast Response)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div>
+                    <div class="text-xs uppercase tracking-wider text-gray-400 mb-3">Ikuti Media Sosial Kami</div>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 rounded-full bg-charcoal border border-subtle text-gray-300 hover:text-gold hover:border-gold flex items-center justify-center transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-charcoal border border-subtle text-gray-300 hover:text-gold hover:border-gold flex items-center justify-center transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-charcoal border border-subtle text-gray-300 hover:text-gold hover:border-gold flex items-center justify-center transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-charcoal border border-subtle text-gray-300 hover:text-gold hover:border-gold flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                    </div>
+                </div>
+
+                <!-- Map Placeholder -->
+                <div class="rounded-2xl overflow-hidden border border-subtle h-48 bg-charcoal relative">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.27375753063!2d106.8048995!3d-6.227603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f14d10103657%3A0xa64508ec3a0c4f83!2sSenopati!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" class="w-full h-full grayscale opacity-70 contrast-125" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <!-- Booking Form -->
+            <div class="glass-card p-8 rounded-2xl">
+                <h3 class="font-serif text-2xl font-bold text-white mb-6">Formulir Reservasi Tanggal</h3>
+                <form id="booking-form" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-300 mb-1">Nama Lengkap *</label>
+                        <input type="text" id="form-name" required class="w-full bg-obsidian border border-subtle rounded-xl p-3 text-white text-sm focus:border-gold focus:outline-none" placeholder="Contoh: Alexandra Widjaja">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-300 mb-1">Email *</label>
+                            <input type="email" id="form-email" required class="w-full bg-obsidian border border-subtle rounded-xl p-3 text-white text-sm focus:border-gold focus:outline-none" placeholder="nama@email.com">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-300 mb-1">Nomor WhatsApp *</label>
+                            <input type="tel" id="form-phone" required class="w-full bg-obsidian border border-subtle rounded-xl p-3 text-white text-sm focus:border-gold focus:outline-none" placeholder="08123456789">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-300 mb-1">Rencana Tanggal Event *</label>
+                            <input type="date" id="form-date" required class="w-full bg-obsidian border border-subtle rounded-xl p-3 text-white text-sm focus:border-gold focus:outline-none text-gray-300">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-300 mb-1">Jenis Layanan</label>
+                            <select id="form-service" class="w-full bg-obsidian border border-subtle rounded-xl p-3 text-white text-sm focus:border-gold focus:outline-none">
+                                <option value="Wedding & Engagement">Wedding & Engagement</option>
+                                <option value="Prewedding Concept">Prewedding Concept Shoot</option>
+                                <option value="Commercial & Product">Commercial & Product</option>
+                                <option value="Event Coverage">Corporate / Event Coverage</option>
+                                <option value="Cinematic Drone">Cinematic Video & Drone</option>
+                                <option value="Portrait Studio">Portrait / Personal Studio</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-medium text-gray-300 mb-1">Catatan Khusus / Pesan Tambahan</label>
+                        <textarea id="form-notes" rows="4" class="w-full bg-obsidian border border-subtle rounded-xl p-3 text-white text-sm focus:border-gold focus:outline-none" placeholder="Ceritakan konsep atau detail acara Anda..."></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 rounded-xl bg-gold text-obsidian font-bold hover:bg-gold-light transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+                        Kirim Reservasi Via WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-obsidian border-t border-subtle py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full border border-gold flex items-center justify-center text-gold font-serif font-bold text-sm">
+                    AZ
+                </div>
+                <span class="font-serif text-lg font-bold text-white">AZ PROJECT</span>
+            </div>
+
+            <p class="text-xs text-gray-400">
+                &copy; 2026 AZ PROJECT Studio Visual. All Rights Reserved. Crafted with elegance.
+            </p>
+
+            <div class="flex space-x-6 text-xs text-gray-400">
+                <a href="#" class="hover:text-gold transition-colors">Kebijakan Privasi</a>
+                <a href="#" class="hover:text-gold transition-colors">Syarat & Ketentuan</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Interactive Logic -->
+    <script>
+        // Data Portfolio Mock Data
+        const portfolioData = [
+            {
+                id: 1,
+                title: "Elegance in Bali Sunset",
+                category: "wedding",
+                categoryLabel: "Wedding",
+                img: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1000&auto=format&fit=crop",
+                client: "Kevin & Clarissa",
+                date: "14 Januari 2026",
+                location: "Uluwatu, Bali",
+                desc: "Dokumentasi pernikahan bertema intimate outdoor wedding berlatar tebing laut Uluwatu dengan nuansa warna hangat dan emosional."
+            },
+            {
+                id: 2,
+                title: "Urban Heritage Prewedding",
+                category: "prewedding",
+                categoryLabel: "Prewedding",
+                img: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1000&auto=format&fit=crop",
+                client: "Dito & Maya",
+                date: "02 Februari 2026",
+                location: "Kota Tua, Jakarta",
+                desc: "Sesi pra-nikah klasik bergaya vintage arsitektur kolonial dengan pencahayaan dramatis di sore hari."
+            },
+            {
+                id: 3,
+                title: "Luxury Watch Commercial",
+                category: "commercial",
+                categoryLabel: "Commercial",
+                img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000&auto=format&fit=crop",
+                client: "Chronos Timepiece",
+                date: "20 Desember 2025",
+                location: "Studio AZ Project",
+                desc: "Fotografi produk komersial jam tangan mewah berfokus pada detail presisi material dan kemewahan refleksi."
+            },
+            {
+                id: 4,
+                title: "Tech Summit Gala Night",
+                category: "event",
+                categoryLabel: "Event",
+                img: "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1000&auto=format&fit=crop",
+                client: "NEXA Corporation",
+                date: "10 November 2025",
+                location: "Ritz-Carlton, Jakarta",
+                desc: "Dokumentasi malam anugerah bisnis berskala internasional dengan tata panggung lampu panggung berwarna tinggi."
+            },
+            {
+                id: 5,
+                title: "High Fashion Portrait",
+                category: "portrait",
+                categoryLabel: "Portrait",
+                img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop",
+                client: "Sophia Lauren",
+                date: "05 Maret 2026",
+                location: "Studio AZ Project",
+                desc: "Sesi foto portrait studio editorial fashion dengan komposisi bayangan lembut dan estetika minimalis."
+            },
+            {
+                id: 6,
+                title: "Sacred Cathedral Vows",
+                category: "wedding",
+                categoryLabel: "Wedding",
+                img: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1000&auto=format&fit=crop",
+                client: "Bagas & Sarah",
+                date: "28 November 2025",
+                location: "Gereja Katedral, Jakarta",
+                desc: "Pengabadikan prosesi pemberkatan pemberkatan sakral dengan keindahan arsitektur katedral megah."
+            }
+        ];
+
+        // Testimonial Data
+        const testimonials = [
+            {
+                text: "Hasil foto pernikahan kami sangat sinematik dan menyentuh hati! Tim AZ PROJECT sangat profesional, membuat kami merasa sangat nyaman saat sesi shoot.",
+                author: "Rian & Amanda",
+                role: "Pernikahan di Bali",
+                stars: 5
+            },
+            {
+                text: "Kualitas foto produk kami meningkat drastis setelah bekerjasama dengan AZ PROJECT. Penjualan toko online kami naik signifikan karena tampilan katalog profesional!",
+                author: "Budi Santoso",
+                role: "Owner Brand Fashion",
+                stars: 5
+            },
+            {
+                text: "Drone video untuk liputan event perusahaan kami sungguh memukau! Editing cepat, komunikasi ramah, dan hasilnya melebihi ekspektasi manajemen.",
+                author: "Citra Kirana",
+                role: "PR Director Corp",
+                stars: 5
+            }
+        ];
+
+        let currentTestiIndex = 0;
+
+        // Render Portfolio Grid
+        function renderPortfolio(filter = 'all') {
+            const grid = document.getElementById('portfolio-grid');
+            grid.innerHTML = '';
+
+            const filteredData = filter === 'all' 
+                ? portfolioData 
+                : portfolioData.filter(item => item.category === filter);
+
+            filteredData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "group relative rounded-2xl overflow-hidden border border-subtle bg-charcoal cursor-pointer transition-all duration-300 hover:border-gold/50 hover:shadow-[0_0_20px_rgba(212,175,55,0.2)]";
+                card.onclick = () => openModal(item);
+
+                card.innerHTML = `
+                    <div class="h-64 sm:h-72 overflow-hidden relative">
+                        <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-obsidian/80 border border-gold/40 text-gold text-[10px] uppercase font-bold tracking-wider">${item.categoryLabel}</span>
+                    </div>
+                    <div class="p-5 absolute bottom-0 inset-x-0">
+                        <h3 class="font-serif text-lg font-bold text-white group-hover:text-gold transition-colors">${item.title}</h3>
+                        <p class="text-xs text-gray-300 mt-1 flex items-center justify-between">
+                            <span>${item.client}</span>
+                            <span class="text-gold"><i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></span>
+                        </p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Modal Controls
+        function openModal(item) {
+            document.getElementById('modal-img').src = item.img;
+            document.getElementById('modal-title').innerText = item.title;
+            document.getElementById('modal-category').innerText = item.categoryLabel;
+            document.getElementById('modal-desc').innerText = item.desc;
+            document.getElementById('modal-client').innerText = item.client;
+            document.getElementById('modal-date').innerText = item.date;
+            document.getElementById('modal-location').innerText = item.location;
+
+            const modal = document.getElementById('portfolio-modal');
+            modal.classList.remove('hidden');
+        }
+
+        document.getElementById('modal-close').onclick = () => {
+            document.getElementById('portfolio-modal').classList.add('hidden');
+        };
+
+        // Filter Buttons Dynamic Switch
+        document.querySelectorAll('#portfolio-filters button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('#portfolio-filters button').forEach(b => {
+                    b.classList.remove('bg-gold', 'text-obsidian', 'border-gold', 'font-semibold');
+                    b.classList.add('bg-obsidian', 'text-gray-300', 'border-subtle');
+                });
+                e.target.classList.remove('bg-obsidian', 'text-gray-300', 'border-subtle');
+                e.target.classList.add('bg-gold', 'text-obsidian', 'border-gold', 'font-semibold');
+
+                const filter = e.target.getAttribute('data-filter');
+                renderPortfolio(filter);
+            });
+        });
+
+        // Price Calculator Logic
+        function updateCalculator() {
+            const packageSelect = document.getElementById('calc-package');
+            const selectedOption = packageSelect.options[packageSelect.selectedIndex];
+            const basePrice = parseInt(selectedOption.getAttribute('data-price'));
+
+            const hours = parseInt(document.getElementById('calc-hours').value);
+            const hoursPrice = hours * 500000;
+
+            let addonsPrice = 0;
+            document.querySelectorAll('.calc-addon:checked').forEach(addon => {
+                addonsPrice += parseInt(addon.getAttribute('data-price'));
+            });
+
+            const totalPrice = basePrice + hoursPrice + addonsPrice;
+
+            // Formatter
+            const formatRp = (num) => 'Rp ' + num.toLocaleString('id-ID');
+
+            document.getElementById('extra-hours-val').innerText = hours + ' Jam';
+            document.getElementById('summary-main').innerText = formatRp(basePrice);
+            document.getElementById('summary-hours').innerText = formatRp(hoursPrice);
+            document.getElementById('summary-addons').innerText = formatRp(addonsPrice);
+            document.getElementById('total-price').innerText = formatRp(totalPrice);
+        }
+
+        document.getElementById('calc-package').addEventListener('change', updateCalculator);
+        document.getElementById('calc-hours').addEventListener('input', updateCalculator);
+        document.querySelectorAll('.calc-addon').forEach(cb => cb.addEventListener('change', updateCalculator));
+
+        // Booking Calculator via WhatsApp Direct
+        document.getElementById('book-calc-btn').addEventListener('click', () => {
+            const packageText = document.getElementById('calc-package').options[document.getElementById('calc-package').selectedIndex].text;
+            const hours = document.getElementById('calc-hours').value;
+            const totalPrice = document.getElementById('total-price').innerText;
+
+            let selectedAddons = [];
+            document.querySelectorAll('.calc-addon:checked').forEach(cb => {
+                selectedAddons.push(cb.value);
+            });
+
+            const addonsText = selectedAddons.length > 0 ? selectedAddons.join(', ') : 'Tidak Ada';
+
+            const message = `Halo AZ PROJECT, saya ingin konsultasi booking paket hasil kalkulator website:%0A%0A- *Paket Utama:* ${packageText}%0A- *Tambahan Jam:* ${hours} Jam%0A- *Add-ons:* ${addonsText}%0A- *Total Estimasi:* ${totalPrice}%0A%0AMohon info ketersediaan tanggalnya. Terima kasih!`;
+
+            window.open(`https://wa.me/6281234567890?text=${message}`, '_blank');
+        });
+
+        // Testimonial Carousel Control
+        function updateTestimonial(index) {
+            const t = testimonials[index];
+            document.getElementById('testi-text').innerText = `"${t.text}"`;
+            document.getElementById('testi-author').innerText = t.author;
+            document.getElementById('testi-role').innerText = t.role;
+        }
+
+        document.getElementById('testi-prev').addEventListener('click', () => {
+            currentTestiIndex = (currentTestiIndex - 1 + testimonials.length) % testimonials.length;
+            updateTestimonial(currentTestiIndex);
+        });
+
+        document.getElementById('testi-next').addEventListener('click', () => {
+            currentTestiIndex = (currentTestiIndex + 1) % testimonials.length;
+            updateTestimonial(currentTestiIndex);
+        });
+
+        // Booking Form Handler
+        document.getElementById('booking-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('form-name').value;
+            const email = document.getElementById('form-email').value;
+            const phone = document.getElementById('form-phone').value;
+            const date = document.getElementById('form-date').value;
+            const service = document.getElementById('form-service').value;
+            const notes = document.getElementById('form-notes').value;
+
+            const text = `Halo AZ PROJECT, saya ingin melakukan reservasi via website:%0A%0A- *Nama:* ${name}%0A- *Email:* ${email}%0A- *No. WA:* ${phone}%0A- *Tanggal Event:* ${date}%0A- *Layanan:* ${service}%0A- *Catatan:* ${notes}`;
+
+            window.open(`https://wa.me/6281234567890?text=${text}`, '_blank');
+        });
+
+        // Mobile Navigation Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileDrawer = document.getElementById('mobile-drawer');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileDrawer.classList.toggle('hidden');
+            mobileDrawer.classList.toggle('flex');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileDrawer.classList.add('hidden');
+                mobileDrawer.classList.remove('flex');
+            });
+        });
+
+        // Initialize On Load
+        window.onload = function() {
+            renderPortfolio('all');
+            updateCalculator();
+        };
+    </script>
+</body>
+</html>
